@@ -11,7 +11,8 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/static_value.js"></script>
 	<script src="js/user.js" charset="utf-8"></script>
-  <script src="js/myinfo-project.js" charset="utf-8"></script>
+  	<script src="js/myinfo-articles.js" charset="utf-8"></script>
+
 
 
 	<script>
@@ -82,16 +83,16 @@
 <div class="line"></div>
 <ul class="menu">
 <li><a href="./myinfo.html" ><div class="info"><strong style="font-size:18px;">个人信息</strong><span>></span></div></a></li>
-<li><a href="#" class="active"  ><div class="info"><strong style="font-size:18px;">我的项目</strong><span>></span></div></a></li>
-<li><a href="./myinfo-group.html" ><div class="info"><strong style="font-size:18px;">我的团队</strong><span>></span></div></a></li>
-<li><a href="./myinfo-task.html" ><div class="info"><strong style="font-size:18px;">我的任务</strong><span>></span></div></a></li>
-<li><a href="./myinfo-articles.html" ><div class="info"><strong style="font-size:18px;">通知中心</strong><span>></span></div></a></li>
+<li><a href="./myinfo-project.html" ><div class="info"><strong style="font-size:18px;">我的项目</strong><span>></span></div></a></li>
+<li><a href="./myinfo-group.html"><div class="info"><strong style="font-size:18px;">我的团队</strong><span>></span></div></a></li>
+<li><a href="./myinfo-task.html"  ><div class="info"><strong style="font-size:18px;">我的任务</strong><span>></span></div></a></li>
+<li><a href="#"  class="active" ><div class="info"><strong style="font-size:18px;">通知中心</strong><span>></span></div></a></li>
 </ul>
 </div>
 </div>
-<div class="right-div" style="position: relative">
+<div class="right-div" style="position: relative" id="MyTaskDiv">
 <div class="myinfo-title" id="myInfoTitle">
-我的项目
+通知中心
 </div>
 <div class="info-line" style="margin: 0px 0px 0px 0px"></div>
 
@@ -101,24 +102,26 @@
   <table class="table">
     <thead>
       <tr>
-        <th>项目名称</th>
-        <th>项目描述</th>
-        <th>项目拥有团队</th>
-		    <th>项目创建时间</th>
+    <th>通知ID</th>
+    <th>通知内容</th>
+		<th>通知类型</th>
+    <th>通知任务名称</th>
+    <th>通知创建时间</th>
+		<th>通知最后更新时间</th>
+    
 		</tr>
     </thead>
-    <tbody id="myinfoProjectBody">
-  
+    <tbody id="myinfoArticleBody">
+     
     </tbody>
   </table>
 </div>
 
-
 </div> 
 
+<p style=" position: absolute; bottom: 1px; color: #a2a2a2;">共<strong id="count">0</strong>项</p>
 
-
-<p style=" position: absolute; bottom: 1px; color: #a2a2a2;">共<strong id="count">0</strong>项</p></div>
+</div>
 </div>
 
 <br>

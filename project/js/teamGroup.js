@@ -81,12 +81,7 @@ $.ajax({
        },
      data:JSON.stringify(obj),  
     crossDomain: true,
-    success:function(res){
-       alert(res.message);
-    }
-
-});
-
+     success:function(res){
 var projectId = $("#projectSelect").val();
 
 $.ajax({
@@ -106,6 +101,13 @@ $.ajax({
     }
 
 });
+
+
+       alert(res.message);
+    }
+
+});
+
 
 
 

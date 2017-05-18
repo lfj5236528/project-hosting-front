@@ -186,6 +186,39 @@ $("#registerButton").click(function(){
 
 
 
+
+$("#startProject").click(function(){
+
+var name = $("#projectName").val();
+
+$.ajax({
+	url:backUrl+"/api/web/projects/create",
+	type:"POST",
+	dataType:"json",
+	xhrFields: {
+           withCredentials: true
+       },
+     data:{
+        "name":name
+     },  
+    crossDomain: true,
+    success:function(obj){
+	alert(obj.message);
+	
+    $("#projectName").val("");
+    }
+
+});
+
+})
+
+
+
+
+
+
+
+
 	
 });
 
