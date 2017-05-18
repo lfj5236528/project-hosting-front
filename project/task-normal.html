@@ -1,0 +1,314 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+	<script src="./js/findProjectByCreaterId.js" charset="utf-8"></script>
+	<script src="./js/findNormalTask.js" charset="utf-8"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown active">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+       <li><a href="team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+       <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>项目构建</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="../project/init.html#" class="menu-list "><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="../project/team.html#" class="menu-list"><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="../project/task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+
+
+</dl>
+
+</div>
+<div class="right-div">
+<input type="text" hidden="true" value="1" id="taskNormalStatus">
+<span class="title text-warning"><strong>正在进行中的任务</strong></span>
+
+
+<p class="title-msg">请在这里选择项目获取当前项目正在进行中的任务,当前选择项目：
+	<select style="padding-left:10px; color: #000000" id="projectSelect">
+	<option>暂时未选中项目</option>
+    </select>
+</p>
+
+
+
+<div>
+
+<div class="table table-hover" style="margin:5px 20px auto 20px;">
+<table class="table">
+<thead>
+<tr>
+<th >任务名称</th>
+<th >任务描述</th>
+<th >任务所属模块</th>
+<th >任务截止时间</th>
+<th >任务负责人</th>
+</tr>
+</thead>
+<tbody id="NormalTaskBody">
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+<hr style="margin:20px 5px auto 20px;">
+<p style=" margin:10px auto auto 20px; color: #a2a2a2;">共<strong id="count">0</strong>项</p>
+
+</div>
+</div>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 子任务查看模态框（Modal） -->
+<div class="modal fade" id="viewTaskInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看子任务指派信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">子任务名称</span>
+				<input type="text" class="form-control" placeholder="任务一" disabled="true">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;" >
+				<span class="input-group-addon">子任务描述</span>
+				<input type="text" class="form-control" placeholder="任务一描述" disabled="true">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建人</span>
+				<input type="text" class="form-control" placeholder="暂无" disabled="true">
+				</div>
+				
+				
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务所属任务模块</span>
+				<input type="text" class="form-control" placeholder="未知模块" disabled="true">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-4" disabled="true">
+				</div>
+
+
+				 <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务截止时间</span>
+				<input type="text" class="form-control" placeholder="2017-6-4" disabled="true" >
+				</div>
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">子任务人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--子任务信息-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+					<a href="#" class="list-group-item active" >
+						子任务负责成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;">
+					
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" disabled="true">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" disabled="true">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					
+					</div>
+					<!--可添加成员框-->
+					<div id="addPersonDiv" style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;">
+					<a href="#" class="list-group-item" >李二</a>
+					<a href="#" class="list-group-item">大飞</a>
+					<a href="#" class="list-group-item" >王二</a>
+					<a href="#" class="list-group-item">飞舞</a>
+					<a href="#" class="list-group-item">李迅</a>
+					<a href="#" class="list-group-item">海腾</a>
+					</div>
+					</div>
+				
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

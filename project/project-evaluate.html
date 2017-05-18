@@ -1,0 +1,321 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown active">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+      <li><a href="team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+      <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>项目构建</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="#" class="menu-list act"><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="team.html" class="menu-list"><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+</dl>
+
+</div>
+<div class="right-div">
+<div class="title">
+<span class="title text-warning"><strong>项目规模评估</strong></span>
+
+</div>
+
+<div class="body">
+<hr>
+<form>
+<div class="info-div">
+<h2 class="small-title">项目开发进度信息</h2>
+
+<div class="from-group">
+<label class="project-font">项目类型</label>
+<select id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>全新的项目</option>
+<option>半成品项目</option>
+</select>
+</div>
+
+
+<div class="from-group">
+<label class="project-font">项目完成度</label>
+<select disabled id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>0%-30%</option>
+<option>30%-60%</option>
+<option>60%-100%</option>
+</select>
+<label class="project-font1">*只有半成品项目可以进行此项选择</label>
+</div>
+
+<div class="from-group">
+<label class="project-font">原团队人数</label>
+<select disabled id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>1-10人</option>
+<option>10-50人</option>
+<option>50人以上</option>
+</select>
+<label class="project-font1">*只有半成品项目可以进行此项选择</label>
+</div>
+
+
+<div class="from-group">
+<label class="project-font">能否立即开发</label>
+<select  id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>是</option>
+<option>否</option>
+</select>
+
+</div>
+
+</div>
+
+</form>
+<hr>
+
+
+<form>
+<div class="info-div">
+<h2 class="small-title">团队人员信息</h2>
+
+<div class="from-group">
+<label class="project-font">团队总人数</label>
+<select id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>1-10人</option>
+<option>10-50人</option>
+<option>50人以上</option>
+</select>
+</div>
+
+
+<div class="from-group">
+<label class="project-font">团队人员平均工龄</label>
+<select  id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>1年内</option>
+<option>1-3年</option>
+<option>3年以上</option>
+</select>
+
+
+</div>
+
+
+<div class="from-group">
+<label class="project-font">负责人工作经验</label>
+<select  id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>新手</option>
+<option>优秀</option>
+<option>熟练</option>
+<option>精通</option>
+</select>
+<label class="project-font1">*项目负责人对一个项目的成败至关重要</label>
+</div>
+
+
+
+</div>
+
+</form>
+
+
+<hr>
+
+
+<form>
+<div class="info-div">
+<h2 class="small-title">项目时间信息</h2>
+
+<div class="from-group">
+<label class="project-font">项目开发时长</label>
+<select id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>0-1月</option>
+<option>1-3月</option>
+<option>3-6月</option>
+<option>6-12月</option>
+<option>1-3年</option>
+<option>3年以上</option>
+</select>
+</div>
+
+
+<div class="from-group">
+<label class="project-font">团队人员平均日工作时长</label>
+<select  id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>1-3小时</option>
+<option>3-6小时</option>
+<option>6-9小时</option>
+<option>9小时以上</option>
+</select>
+
+
+</div>
+
+
+<div class="from-group">
+<label class="project-font">项目是否允许延期</label>
+<select  id="project-style" placeholder="请选择" class="select-style">
+<option selected>请选择</option>
+<option>是</option>
+<option>否</option>
+</select>
+<label class="project-font1">*项目允许延期,系统可能会推荐备选开发方案</label>
+</div>
+
+</div>
+<p class="bt" style="text-align:left; padding-left:28px;"><a href="#"><button class="btn btn-primary">获取项目规模评估结果</button></a></p>
+</div>
+
+</div>
+
+</form>
+
+
+
+</div>
+</div>
+</div>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

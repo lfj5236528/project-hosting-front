@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+<style>
+.head-div{
+padding-top:10px;
+margin-top:52px;
+float:left;
+border: 1px solid #cedfea;
+
+}
+
+.function-div{
+float:left;
+border: 1px solid #cedfea;
+margin-top:52px;
+margin-left:10px;
+padding-top:10px;
+padding-left:5px;
+padding-right:5px;
+}
+
+.desc-div{
+float:left;
+border: 1px solid #cedfea;
+margin-left:10px;
+margin-top:52px;
+padding-top:10px;
+padding-left:5px;
+padding-right:5px;
+text-align:left;
+
+}
+
+
+
+.myfont{
+    line-height: 18px;
+    padding: 5px 20px 0;
+    font-size: 12px;
+    color: #8f9297;
+    text-align: left;
+}
+
+.title{
+    padding: 10px 0px 0px 0px;
+    font-size: 30px;
+    text-align: center;
+    color: #ffa800;
+}
+
+.console-div{
+    line-height: 1.2;
+	border: 3px solid #cedfea;
+    font-family: "Courier New";
+	width:655px;
+	height:300px;
+
+}
+
+</style>
+<script>
+$("document").ready(function(){
+onerror = function(msg)
+{
+    var txt="";
+    txt+= msg;
+	$("#result-p").text("来自控制台的错误信息:"+txt);
+}
+
+
+
+var height = window.innerHeight-50;
+var width=window.innerWidth;
+
+
+var descWidth=parseInt(width)-parseInt($("#head-div").width())-parseInt($("#function-div").width())-66;
+
+$("#head-div").css("height", height);
+$("#data-table").css("height", height);
+$("#function-div").css("height", height);
+$("#desc-div").css("height", height);
+$("#desc-div").css("width", descWidth);
+$("#createDataInput").click(function(){
+
+var num = $("#dataNum").val();
+$("#dataInput").text("");
+var str='<input style="width:288px;margin-top:1px;" class="form-control" placeholder="';
+var str0='.输入该行数据" id="dataNum';
+
+var str1='">';
+
+$("#dataInputTr").css("height",num*35+35);
+
+
+for(var i=1;i<=num;i++){
+
+var appendStr =str+i+str0+i+str1;
+
+$("#dataInput").append(appendStr);
+}
+var strr ='<button class="btn btn-warning" type="button" id="reset-button" style="width:288px;margin-top:3px;">重置数据</button>'
+$("#dataInput").append(strr);
+script = document.createElement("script");
+var funText='$("#reset-button").click(function(){$("#dataInput").text("");$("#dataNum").val("");});';
+script.text=funText;
+document.documentElement.childNodes[0].appendChild(script);
+});
+
+
+
+
+$("#run-button").click(function(){
+		$("#result-p").text("");
+		$("#dataRow").val("1");
+		var commonReadFunctionText='function read_line(){var content=$("#dataRow").val();var name ="#dataNum"+content;var data = $(name).val();content=parseInt(content)+1;$("#dataRow").val(content);if(data==undefined)return null;else return data;}';
+		var commonReadFunctionText1='function readline(){var content=$("#dataRow").val();var name ="#dataNum"+content;var data = $(name).val();content=parseInt(content)+1;$("#dataRow").val(content);if(data==undefined)return null;else return data;}';
+		var commonPrintFunctionText='function print(data){$("#result-p").append(data+"<br><br>");}';
+		var jsText =commonReadFunctionText+commonReadFunctionText1+commonPrintFunctionText+ $("#jsTextArea").val();
+		o=document.createElement("script");         //动态创建script元素
+		o.text=jsText;                    //输出语句。。是脚本中的代码
+		document.documentElement.childNodes[0].appendChild(o);//将脚本添加到页面中
+		
+});
+
+
+
+
+
+});
+
+</script>
+
+</head>
+
+<body>
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/init.html">项目规模评估</a></li>
+        	<li><a href="../project/team.html">团队构建</a></li>
+        	<li ><a href="../project/task.html">任务清单</a></li>
+          </ul>
+      </li>
+      <li><a href="../project/team-manage.html">团队管理</a></li>
+       <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+	  <li class="dropdown active"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="#">JavaScript V8引擎模拟</a></li>
+      <li><a href="dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+<div class="head-div" id="head-div" style="border: 1px solid #d4d4d4;">
+
+<div class="form-group">
+<label style="margin-left:150px;" >数据填充区</label>
+<table style="width:400px; " id="data-table">
+<tr style="height:35px;">
+<td >
+<div class="col-lg-12">
+                <div class="input-group">
+                     <input class="form-control" placeholder="输入待输入数据的行数" id="dataNum">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="createDataInput">输入数据</button>
+						
+                    </span>
+                </div><!-- /input-group -->
+
+</div>
+</td>
+</tr>
+
+<tr id="dataInputTr">
+<td>
+<div id="dataInput" style="margin-left:15px;margin-top:2px;">
+
+</div>
+</td>
+</tr>
+<tr>
+<input id="dataRow" type="hidden" value=1>
+</tr>
+
+</table>
+</div>
+
+
+
+
+
+</div>
+<div class="function-div" id="function-div" >
+
+<div class="form-group"  >
+    <label style="margin-left:270px;">代码填充区</label>
+	<div for="desc">
+	<label class="myfont" >请输入javascript代码:</label>
+	</div>
+    <textarea class="form-control" rows="20" cols="100" style="margin-bottom:5px;" id="jsTextArea"></textarea>
+   <button class="btn btn-primary" type="button" style="width:655px;" id="run-button">运行代码</button>
+<p><label class="myfont" style="margin-top:10px;">运行结果:</label></p>
+ </div >
+ 
+  <div class="console-div">
+  <p id="result-p"  style="margin:10px 5px; color: rgb(0, 188, 155);"><strong>暂无输出结果!</strong></p>
+  </div>
+  
+</div>
+
+
+<div class="desc-div" id="desc-div">
+
+                                    <span style="height:30px;font-weight:bold; font-size:18px;">样例题目及程序</span><br><br>
+
+
+                                    <div style="float:left">
+                                        <div>
+                                            <h5><strong>A + B</strong></h5>
+                                            <h5><strong>描述</strong></h5>
+                                            <p>给予两个整数 a 和 b ，计算它们的和 a + b</p>
+                                            <h5><strong>输入</strong></h5>
+                                            <p>输入包含多组测试数据，每一行包含两个整数 a 和 b</p>
+                                            <h5><strong>输出</strong></h5>
+                                            <p>在一行中输出 a + b 的值</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div style="float:left;width:200px;margin-left:10px;">
+                                        
+                                            <h5><strong>样例输入</strong></h5>
+                                            <pre class="pre1" style="padding-bottom:90px;font-weight:bold;">1 2<br>3 4<br>5 6</pre>
+                                   
+                                    </div>
+
+                                    <div style="float:left;width:200px;margin-left:10px;">
+                                       
+                                            <h5><strong>样例输出</strong></h5>
+                                            <pre class="pre1" style="padding-bottom:90px;font-weight:bold;">3<br>7<br>11</pre>
+                                       
+                                    </div>
+                                    <div style="clear:both; overflow:hidden;"></div>
+									<div  style="display: block;margin-top:100px;">
+                                    <div><h5><strong>JavaScript 语言</strong></h5></div>
+									
+                                    <div >
+                                        <pre class="pre2">var line;
+while(line = read_line()){
+    line = line.split(' ');
+    print(parseInt(line[0]) + parseInt(line[1]));
+}
+                            </pre>
+                                    </div>
+                                </div>
+						<div style="margin-top:50px;">
+								<span  class="title" >系统使用说明</span>
+								
+							<hr style="border-top: 1px solid #ffa800;">
+							<span><h5><strong>注意事项:</strong></h5></span>
+							<p>1.由于js编程练习算法题,需要<span style="color:red;">安装V8引擎</span>来模拟数据输入的过程,所以利用本系统可以不用<span style="color:red;">安装V8引擎</span>,进行模拟数据输入过程。</p>
+							
+							<p>2.由于使用javascript进行算法编程时,本地环境是<span style="color:red;">无法进行过程调试的</span>，所以我们可以<span style="color:red;">借助本系统配合浏览器进行过程调试。</span></p>
+							
+							<p>3.使用本系统,我们<span style="color:red;">首先在数据填充区输入我们要的测试用例的行数</span>,并点击输入数据按钮,<span style="color:red;">接着需要输入每行的数据</span>，数据间的分隔符由题目确定，<span style="color:red;">最后在代码填充区填入编写的javascript代码</span>，点击运行，即可得到测试结果。</p>
+							
+							<p>4.使用调试代码请打开<span style="color:red;">开发者工具</span>。</p>
+							
+							<p>4.读入每行数据请使用<span style="color:red;">read_line()或readline()</span>函数。</p>
+							
+						</div>
+                                   
+                        
+</div>
+<br>
+<!--页脚-->
+<div class="footer">
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

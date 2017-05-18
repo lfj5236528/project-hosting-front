@@ -1,0 +1,743 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+	<script src="./js/findProjectByCreaterId.js" charset="utf-8"></script>
+	<script src="./js/taskCreate.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown active">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+       <li><a href="team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+       <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>项目构建</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="../project/init.html#" class="menu-list "><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="#" class="menu-list act"><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="../project/task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+</dl>
+
+</div>
+<div class="right-div">
+
+<span class="title text-warning"><strong>任务清单构建</strong></span>
+
+
+<p class="title-msg">请在这里为该项目创建任务清单,当前选择项目：
+	<select style="padding-left:10px; color: #000000" id="projectSelect">
+	<option>暂时未选中项目</option>
+    </select>
+</p>
+
+<div style="padding-left:20px;">
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createTaskModelInfo" id="createTaskModelPrimaryButton" ><span class="glyphicon glyphicon-plus"></span> 新建任务清单模块</button>
+</div>
+
+<div>
+
+<div class="table table-hover" style="margin:5px 20px auto 20px;">
+<table class="table">
+<thead>
+<tr>
+<th >任务模块名称</th>
+<th >任务模块描述</th>
+<th >操作</th>
+</tr>
+</thead>
+<tbody id="ProjectModelBody">
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+<hr style="margin:20px 5px auto 20px;">
+<p style=" margin:10px auto auto 20px; color: #a2a2a2;">共<strong id="count">0</strong>项</p>
+
+</div>
+</div>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+<!-- 任务模块新建模态框（Modal） -->
+<div class="modal fade" id="createTaskModelInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新建任务模块</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">任务模块名称</span>
+				<input type="text" class="form-control" placeholder="请填写任务模块名称" id="TaskModelName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块描述</span>
+				<input type="text" class="form-control" placeholder="请填写任务模块描述" id="TaskModelDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块创建人</span>
+				<input type="text" class="form-control" placeholder="任务模块创建后会自动添加" disabled="true">
+				</div>
+				
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块创建时间</span>
+				<input type="text" class="form-control" placeholder="任务模块创建会自动添加" disabled="true">
+				</div>
+				
+				</div>
+
+		
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="createTaskModelButton" data-dismiss="modal">新建</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 任务模块编辑模态框（Modal） -->
+<div class="modal fade" id="updateTaskModelInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑任务模块</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+					<input type="text" id="updateProjectTaskModelId" hidden="true">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">任务模块名称</span>
+				<input type="text" class="form-control" placeholder="第一个任务模块" id="updateTaskModelInfoName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块描述</span>
+				<input type="text" class="form-control" placeholder="任务模块描述" id="updateTaskModelInfoDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块创建人</span>
+				<input type="text" class="form-control" placeholder="暂无" disabled="true" id="updateTaskModelInfoCreaterName">
+				</div>
+				
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true" id="updateTaskModelInfoOfProject">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-4" disabled="true" id="updateTaskModelInfoCreateDate">
+				</div>
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">任务模块子任务信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--子任务框-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 300px;  border: 1px solid #bcd6f4" >
+					<a href="#" class="list-group-item active" >
+						该模块所有的子任务
+					</a>
+					<input type="text" id="updateChildTaskIdInput" hidden="true"/>
+
+					<div style="overflow-y: auto; height: 165px;" id="updateTaskModelInfoChildTaskDiv">
+				
+					</div>
+					</div>
+					<div style="float: left; margin-left: 50px; padding-top: 20px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" data-toggle="modal" data-target="#viewTaskInfo" id="updateViewChildTaskButton" >
+         			 <span class="glyphicon glyphicon-folder-open"></span>
+					   查看子任务指派信息
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;"  data-toggle="modal" data-target="#updateTaskInfo" id="updateUpdateChildTaskButton">
+					<span class="glyphicon glyphicon-wrench"></span>
+					  编辑子任务指派信息
+					</button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" data-toggle="modal" data-target="#createTaskInfo" id="updateCreateChildTaskButton">
+					<span class="glyphicon glyphicon-plus"></span>
+					  新建子任务指派信息
+					</button>
+
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" id="updateDeleteChildTaskButton">
+					<span class="glyphicon glyphicon-trash"></span>
+					  删除子任务指派信息
+					</button>
+					</div>
+				
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 任务模块查看模态框（Modal） -->
+<div class="modal fade" id="viewTaskModelInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看任务模块</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">任务模块名称</span>
+				<input type="text" class="form-control" placeholder="第一个任务模块" disabled="true" id="viewTaskModelInfoName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块描述</span>
+				<input type="text" class="form-control" placeholder="任务模块描述" disabled="true" id="viewTaskModelInfoDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块创建人</span>
+				<input type="text" class="form-control" placeholder="暂无" disabled="true" id="viewTaskModelInfoCreaterName">
+				</div>
+				
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true" id="viewTaskModelInfoOfProject">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">任务模块创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-4" disabled="true" id="viewTaskModelInfoCreateDate">
+				</div>
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">任务模块子任务信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--子任务框-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 300px;  border: 1px solid #bcd6f4" >
+					<a href="#" class="list-group-item active" >
+						该模块所有的子任务
+					</a>
+					<input type="text" id="viewChildTaskIdInput" hidden="true"/>
+
+					<div style="overflow-y: auto; height: 165px;"  id="viewTaskModelInfoChildTaskDiv">
+				
+					</div>
+					</div>
+					<div style="float: left; margin-left: 50px; padding-top: 20px;  " id="ProjectModelChildTaskDiv" >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" data-toggle="modal" data-target="#viewTaskInfo" id="viewChildTaskButton">
+         			 <span class="glyphicon glyphicon-folder-open"></span>
+					   查看子任务指派信息
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;"  data-toggle="modal" data-target="#updateTaskInfo" disabled="true">
+					<span class="glyphicon glyphicon-wrench"></span>
+					  编辑子任务指派信息
+					</button>
+
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" disabled="true">
+					<span class="glyphicon glyphicon-plus"></span>
+					  新建子任务指派信息
+					</button>
+
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" disabled="true">
+					<span class="glyphicon glyphicon-trash"></span>
+					  删除子任务指派信息
+					</button>
+					</div>
+				
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 子任务编辑模态框（Modal） -->
+<div class="modal fade" id="updateTaskInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑子任务指派信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">子任务名称</span>
+				<input type="text" class="form-control" placeholder="任务一" id="updateUpdateChildTaskInfoName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务描述</span>
+				<input type="text" class="form-control" placeholder="任务一描述" id="updateUpdateChildTaskInfoDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建人</span>
+				<input type="text" class="form-control" placeholder="暂无" disabled="true" id="updateUpdateChildTaskInfoCreaterName">
+				</div>
+				
+				
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true" id="updateUpdateChildTaskInfoOfProject">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务当前状况</span>
+				<input type="text" class="form-control" placeholder="未知模块" disabled="true" id="updateUpdateChildTaskInfoStatus">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-4" disabled="true" id="updateUpdateChildTaskInfoCreateDate">
+				</div>
+
+
+				 <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务截止时间</span>
+				<input type="text" class="form-control" placeholder="2017-6-4"  id="updateUpdateChildTaskInfoEndDate">
+				</div>
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">子任务人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--子任务信息-->
+				
+					<div  style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+						<input type="text" hidden="true" id="updateChildTaskhadUserInputId">
+					<a href="#" class="list-group-item active" >
+						子任务负责成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="updateUpdateChildTaskInfoUsersDiv">
+					
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" id="updateUpdateChildTaskInfoAddUserButton">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" id="updateUpdateChildTaskInfoRemoveUserButton">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					
+					</div>
+					<!--可添加成员框-->
+					<div  style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					<input type="text" hidden="true" id="updateChildTaskCanAddUserInputId">
+
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="updateUpdateChildTaskInfoCanAddUsersDiv">
+				
+					</div>
+					</div>
+				
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="updateUpdateChildTaskSubmitButton">提交更改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 子任务查看模态框（Modal） -->
+<div class="modal fade" id="viewTaskInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看子任务指派信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">子任务名称</span>
+				<input type="text" class="form-control" placeholder="任务一" disabled="true" id="viewChildTaskInfoName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;" >
+				<span class="input-group-addon">子任务描述</span>
+				<input type="text" class="form-control" placeholder="任务一描述" disabled="true" id="viewChildTaskInfoDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建人</span>
+				<input type="text" class="form-control" placeholder="暂无" disabled="true" id="viewChildTaskInfoCreaterName">
+				</div>
+				
+				
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true" id="viewChildTaskInfoOfProject"> 
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务的任务状况</span>
+				<input type="text" class="form-control" placeholder="未知状态" disabled="true" id="viewChildTaskInfoStatus">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-4" disabled="true" id="viewChildTaskInfoCreateDate">
+				</div>
+
+
+				 <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务截止时间</span>
+				<input type="text" class="form-control" placeholder="2017-6-4" disabled="true" id="viewChildTaskInfoEndDate" >
+				</div>
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">子任务人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--子任务信息-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+					<a href="#" class="list-group-item active" >
+						子任务负责成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="viewChildTaskInfoUsersDiv">
+					
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" disabled="true">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" disabled="true">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					
+					</div>
+					<!--可添加成员框-->
+					<div id="addPersonDiv" style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="viewChildTaskInfoCanAddUsersDiv">
+				
+					</div>
+					</div>
+				
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 子任务新建模态框（Modal） -->
+<div class="modal fade" id="createTaskInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新建子任务指派信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">子任务名称</span>
+				<input type="text" class="form-control" placeholder="请输入任务名称" id="createChildTaskName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务描述</span>
+				<input type="text" class="form-control" placeholder="请输入任务描述" id="createChildTaskDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建人</span>
+				<input type="text" class="form-control" placeholder="创建后会自动添加" disabled="true">
+				</div>
+				
+				
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务所属项目</span>
+				<input type="text" class="form-control" placeholder="创建后会自动添加" disabled="true">
+				</div>
+
+				
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务创建时间</span>
+				<input type="text" class="form-control" placeholder="创建后会自动添加" disabled="true">
+				</div>
+
+
+				 <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">子任务截止时间</span>
+				<input type="text" class="form-control" placeholder="2017-6-4 00:00:00"  id="createChildTaskEndDate">
+				</div>
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">子任务人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--子任务信息-->
+				
+					<div  style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+						<input type="text" hidden="true" id="createChildTaskHadUserIdInput">
+					<a href="#" class="list-group-item active"  >
+						子任务负责成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="createChildTaskHadAddUserDiv">
+					
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" id="createChildTaskAddUserButton">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" id="createChildTaskRemoveUserButton">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					
+					</div>
+					<!--可添加成员框-->
+					<div  style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					<input type="text" hidden="true" id="createChildTaskCanAddUserIdInput">
+
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="createChildTaskCanAddUserDiv">
+					
+					</div>
+					</div>
+				
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="createChildTaskSubmitButton">新建</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

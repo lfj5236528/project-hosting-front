@@ -1,0 +1,258 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="js/user.js" charset="utf-8"></script>
+  <script src="js/myinfo-project.js" charset="utf-8"></script>
+
+
+	<script>
+	myInfoTag=1;
+
+	</script>
+</head>
+
+<body>
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li class="active"><a href="index.html">首页</a></li>
+       <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        <li><a href="../project/init.html">项目规模评估</a></li>
+        	<li><a href="../project/team.html">团队构建</a></li>
+        	<li ><a href="../project/task.html">任务清单</a></li>
+          </ul>
+      </li>
+        <li><a href="../project/team-manage.html">团队管理</a></li>
+    <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+       <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+
+<!--个人信息左侧面板-->
+<div class="myinfo-body">
+
+<div class="left-div">
+<!--头像面板-->
+<div class="myinfo-avatar">
+<div class="face-image-div">
+<image class="avatar-image" src="../images/avatar.jpg">
+</div>
+<div class="desc-div">
+<p class="text-success" ><strong><a href="#" id="myinfoName" style="text-decoration:none">名字18705425311</a></strong></p>
+</div>
+</div>
+<!--左侧导航栏-->
+<div class="myinfo-navbar">
+<h2>账号管理</h2>
+<div class="line"></div>
+<ul class="menu">
+<li><a href="./myinfo.html" ><div class="info"><strong style="font-size:18px;">个人信息</strong><span>></span></div></a></li>
+<li><a href="#" class="active"  ><div class="info"><strong style="font-size:18px;">我的项目</strong><span>></span></div></a></li>
+<li><a href="./myinfo-group.html" ><div class="info"><strong style="font-size:18px;">我的团队</strong><span>></span></div></a></li>
+<li><a href="./myinfo-task.html" ><div class="info"><strong style="font-size:18px;">我的任务</strong><span>></span></div></a></li>
+<li><a href="#" ><div class="info"><strong style="font-size:18px;">通知中心</strong><span>></span></div></a></li>
+</ul>
+</div>
+</div>
+<div class="right-div" style="position: relative">
+<div class="myinfo-title" id="myInfoTitle">
+我的项目
+</div>
+<div class="info-line" style="margin: 0px 0px 0px 0px"></div>
+
+<div class="info-body">
+
+<div class="table-responsive" style="margin-top:20px;">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>项目名称</th>
+        <th>项目描述</th>
+        <th>项目拥有团队</th>
+		    <th>项目创建时间</th>
+		</tr>
+    </thead>
+    <tbody id="myinfoProjectBody">
+  
+    </tbody>
+  </table>
+</div>
+
+
+</div> 
+
+
+
+<p style=" position: absolute; bottom: 1px; color: #a2a2a2;">共<strong id="count">0</strong>项</p></div>
+</div>
+
+<br>
+<!--页脚-->
+<div class="footer foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+<footer>
+
+</footer>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--替换邮箱模态框-->
+<div class="modal" id="email-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">替换邮箱</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">当前用户绑定邮箱:</label><span class="text-warning "  style="font-size:20px;" id="myinfo-update-email">example@sina.com</span>
+</div>
+<div class="form-group">
+<label class="text-primary">新绑定邮箱:</label><input class="form-control" type="text" placeholder="请输入用户新邮箱" id="myinfo-update-new-email">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="myInfoEmailUpdateButton">替换</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--更换密码模态框-->
+<div class="modal" id="update-password-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">替换密码</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">用户当前密码:</label><input class="form-control" type="password" placeholder="请输入用户当前密码" id="myinfo-update-old-password">
+</div>
+<div class="form-group">
+<label class="text-primary">用户新密码:</label><input class="form-control" type="password" placeholder="请输入用户新密码" id="myinfo-update-new-password">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="myInfoPasswordUpdateButton">更换</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

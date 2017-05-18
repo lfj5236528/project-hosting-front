@@ -1,0 +1,205 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown active">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+       <li><a href="team-manage.html">团队管理</a></li>
+   <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+     <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>项目构建</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="#" class="menu-list act"><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="team.html" class="menu-list"><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+</dl>
+
+</div>
+<div class="right-div">
+<div class="title">
+<span class="title text-warning"><strong>项目规模评估</strong></span>
+
+</div>
+
+<div class="body">
+<hr>
+<h4><strong>请按照平台所需依次录入项目初始化信息，以供平台进行项目规模评估</strong></h4>
+
+<div class="guide-steps ">
+<ul >
+<li>
+<div class="step-hd">
+<h5 class="title"><i class="icons">1</i>项目开发进度</h5>
+<p class="desc">如果你的项目是第一次进行开发，这一步请选择空信息。如果你的项目有一定的基础，请按照此步骤所需信息准确填写</p>
+</div>
+</li>
+<li>
+<div class="step-hd">
+<h5 class="title"><i class="icons">2</i>项目人员信息</h5>
+<p class="desc">项目人员数量和质量与项目的开发效率息息相关，所以请按照实际情况填写人员信息</p>
+</div>
+</li>
+<li>
+<div class="step-hd">
+<h5 class="title"><i class="icons">3</i>项目任务清单</h5>
+<p class="desc">作为一名项目负责人，你应该项目的整体有所了解，为自己的团队成员规划开发任务清单</p>
+</div>
+</li>
+<li>
+<div class="step-hd">
+<h5 class="title"><i class="icons">4</i>项目开发时长</h5>
+<p class="desc">项目的开发时间当然不是随心所欲，所以有一个开发的截至时间，请准确填写项目开发时长</p>
+</div>
+</li>
+</ul>
+
+
+</div>
+<p class="bt"><a href="../project/project-evaluate.html"><button class="btn btn-primary">开始项目规模评估</button></a></p>
+</div>
+
+</div>
+
+
+
+
+</div>
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

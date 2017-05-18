@@ -1,0 +1,211 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="js/user.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li class="active"><a href="##">首页</a></li>
+       <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/init.html">项目规模评估</a></li>
+        	<li><a href="../project/team.html">团队构建</a></li>
+        	<li ><a href="../project/task.html">任务清单</a></li>
+          </ul>
+      </li>
+      <li><a href="../project/team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+      <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	   <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+<!--展示图片-->
+<div class="mybody" id="primary-body">
+
+<div class="span4">
+
+<p class="home_word">一站式项目托管平台</p>
+<h1></h1>
+<a class="center_btn" href="../project/init.html" style="text-decoration:none;">进入代码世界</a>
+</div>
+
+
+</div>
+<!--功能面板-->
+<div class="container">
+<div class="function_list_div">
+<dl class="function_list">
+<dt>项目托管</dt>
+<dd>
+项目规模智能化评估
+<br>
+专业项目开发方案建议
+<br>
+任务清单构建
+<br>
+模板代码生成
+<br>
+BUG跟踪管理
+</dd>
+<dd class="deposit_icon"></dd>
+</dl>
+
+<dl class="function_list">
+<dt>团队管理</dt>
+<dd>
+
+细粒度小组划分
+<br>
+成员权限控制
+<br>
+团队进度监控
+<br>
+任务规划
+</dd>
+<dd class="cooperate_icon"></dd>
+</dl>
+
+
+<dl class="function_list">
+<dt>进度监控</dt>
+<dd>
+基于任务清单的进度监控
+<br>
+项目进度实时监控
+<br>
+任务截止智能提醒
+<br>
+任务延期处理
+</dd>
+<dd class="piececode_icon"></dd>
+</dl>
+
+<dl class="function_list">
+<dt>技术交流</dt>
+<dd>
+技术分享论坛
+<br>
+沟通合作互赢
+
+
+</dd>
+<dd class="support_icon"></dd>
+</dl>
+</div>
+</div>
+
+<br>
+<!--页脚-->
+<div class="footer">
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

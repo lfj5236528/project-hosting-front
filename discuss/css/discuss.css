@@ -1,0 +1,14 @@
+.comment_head{
+    border-radius: 5px;
+    clear: both;
+    background: #f1f1f1;
+    color: #888;
+    padding: 1px 4px;
+}
+
+.comment_body {
+    margin-left: 10px;
+    line-height: 20px;
+    padding: 10px;
+    min-height: 35px;
+}

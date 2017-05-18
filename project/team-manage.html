@@ -1,0 +1,484 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+	<script src="./js/findProjectByCreaterId.js" charset="utf-8"></script>
+    <script src="./js/teamGroup.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown active">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+      <li><a href="team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+       <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>项目构建</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="../project/init.html" class="menu-list "><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="../project/team.html" class="menu-list "><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="../project/task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+
+</dl>
+
+</div>
+<div class="right-div">
+
+<span class="title text-warning"><strong>团队管理</strong></span>
+
+
+<p class="title-msg">请在这里为该项目创建开发团队,当前选择项目：
+	<select style="padding-left:10px; color: #000000" id="projectSelect">
+	<option>请选择项目</option>
+    </select>
+</p>
+
+<div style="padding-left:20px;">
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createProjectTeamInfo" id="createProjectTeamButton"><span class="glyphicon glyphicon-plus"></span> 新建</button>
+</div>
+
+<div>
+
+<div class="table table-hover" style="margin:5px 20px auto 20px;" id="ProjectTeamGroupDiv">
+<table class="table">
+<thead>
+<tr>
+<th >团队名称</th>
+<th >团队说明</th>
+<th >团队操作</th>
+</tr>
+</thead>
+<tbody id="ProjectTeamBody">
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+<hr style="margin:20px 5px auto 20px;">
+<p style=" margin:10px auto auto 20px; color: #a2a2a2;">共<strong id="count">0</strong>项</p>
+
+</div>
+</div>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+<!-- 新建团队模态框（Modal） -->
+<div class="modal fade" id="createProjectTeamInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新建团队信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">团队名称</span>
+				<input type="text" class="form-control" placeholder="输入团队名称" id="createProjectTeamName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;" >
+				<span class="input-group-addon">团队描述</span>
+				<input type="text" class="form-control" placeholder="输入团队描述信息"  id="createProjectTeamDesc">
+				</div>
+
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队组长</span>
+				<input type="text"  hidden="true"  id="createProjectTeamLeaderId" >
+				<input type="text" class="form-control" placeholder="暂无" disabled="true"  id="createProjectTeamLeaderName" >
+				</div>
+				
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队所属项目</span>
+				<input type="text" hidden="true"  id="createProjectTeamOfProjectId" >
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true" id="createProjectTeamOfProjectName">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队创建时间</span>
+				<input type="text" class="form-control" placeholder="创建后会默认添加" disabled="true" id="createProjectTeamDate">
+				</div>
+				
+				</div>
+
+				<div role="projectPersonInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">团队人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--已添加成员框-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+					<input type="text" id="createProjectTeamUserIdInput" hidden="true"/>
+
+					<a href="#" class="list-group-item active"  >
+						已添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;"id="createProjectTeamUserDiv">
+					
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" id="createProjectTeamAddUserButton">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" id="createProjectTeamDeleteUserButton">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					
+					</div>
+					<!--可添加成员框-->
+					<div id="addPersonDiv" style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					
+					<input type="text" id="createProjectTeamAddUserIdInput" hidden="true"/>
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;"  id="createProjectTeamAddUserDiv">
+				
+					</div>
+					</div>
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="createProjectTeamGroupButton"  data-dismiss="modal">创建团队</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 团队信息编辑模态框（Modal） -->
+<div class="modal fade" id="updateProjectTeamInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑团队信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				<input type="text"  hidden="true"  id="updateProjectgroupId" >
+
+				<div role="info">
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">团队名称</span>
+				<input type="text" class="form-control" placeholder="第一个团队" id="updateProjectTeamName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队描述</span>
+				<input type="text" class="form-control" placeholder="团队描述" id="updateProjectTeamDesc">
+				</div>
+
+					<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队组长</span>
+				<input type="text"  hidden="true"  id="updateProjectTeamLeaderId" >
+				<input type="text" class="form-control" placeholder="暂无" disabled="true"  id="updateProjectTeamLeaderName" >
+				</div>
+				
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队所属项目</span>
+				<input type="text" hidden="true"  id="updateProjectTeamOfProjectId" >
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true" id="updateProjectTeamOfProjectName">
+				</div>
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-10" disabled="true" id="updateProjectTeamDate">
+				</div>
+				
+				</div>
+
+				<div role="projectPersonInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">团队人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--已添加成员框-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+					<input type="text" id="updateProjectTeamUserIdInput" hidden="true"/>
+					<a href="#" class="list-group-item active" >
+						已添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="updateProjectTeamUserDiv">
+				
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" id="updateProjectTeamAddUserButton">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" id="updateProjectTeamDeleteUserButton">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					
+					</div>
+					<!--可添加成员框-->
+					<div id="addPersonDiv" style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					<input type="text" id="updateProjectTeamAddUserIdInput" hidden="true"/>
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;"  id="updateProjectTeamAddUserDiv">
+					
+					</div>
+					</div>
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="updateProjectTeamGroupButton" data-dismiss="modal">提交更改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 团队信息查看模态框（Modal） -->
+<div class="modal fade" id="viewProjectTeamInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看团队信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info" >
+				<p style="color: #32CD32">基本信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">团队名称</span>
+				<input type="text" class="form-control" placeholder="第一个团队" disabled="true" id="viewProjectTeamName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队描述</span>
+				<input type="text" class="form-control" placeholder="团队描述" disabled="true" id="viewProjectTeamDesc">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队组长</span>
+				<input type="text" class="form-control" placeholder="暂无" disabled="true" id="viewProjectTeamLeaderName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队所属项目</span>
+				<input type="text" class="form-control" placeholder="未知项目" disabled="true">
+				</div>
+
+				
+
+			    <div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">团队创建时间</span>
+				<input type="text" class="form-control" placeholder="2017-5-4" disabled="true" id="viewProjectTeamDate">
+				</div>
+				
+				</div>
+
+				<div role="projectPersonInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">团队人员信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--已添加成员框-->
+				
+					<div id="teamPersonDiv" style="float:left; width: 200px;  border: 1px solid #bcd6f4" >
+					<a href="#" class="list-group-item active" >
+						已添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="viewProjectTeamUserDiv">
+				
+					</div>
+					</div>
+					<div style="float: left; margin-left: 30px; padding-top: 50px;  "  >
+					 <button type="button" class="btn btn-default btn-sm" style="display: block" disabled="true">
+         			 <span class="glyphicon glyphicon-arrow-left"></span>
+					  添加成员
+       				 </button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" disabled="true">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+					  移除成员
+					</button>
+					<button type="button" class="btn btn-default btn-sm" style="display: block; margin-top:20px;" disabled="true">
+					<span class="glyphicon glyphicon-open"></span>
+					  升为组长
+					</button>
+					</div>
+					<!--可添加成员框-->
+					<div id="addPersonDiv" style="float:left; width: 200px; margin-left:50px; border: 1px solid #bcd6f4" >
+					
+					<a href="#" class="list-group-item active" >
+						可添加的成员
+					</a>
+					<div style="overflow-y: auto; height: 165px;" id="viewProjectTeamAddUserDiv">
+					
+					</div>
+					</div>
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

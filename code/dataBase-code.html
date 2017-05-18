@@ -1,0 +1,303 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+	<script src="./js/dataBase.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown active">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+       <li><a href="../project/team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+       <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="#">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="../discuss/discuss-show.html">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>项目构建</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="../project/init.html" class="menu-list "><span>项目规模评估</span></a></dd>
+<dd><a href="../project/team.html" class="menu-list "><span>团队构建</span></a></dd>
+<dd><a href="../project/task.html" class="menu-list"><span>任务清单</span></a></dd>
+
+<dd><a href="init.html" class="menu-list "><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="#" class="menu-list act"><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+</dl>
+
+</div>
+<div class="right-div">
+
+<span class="title text-warning"><strong>数据库模板代码工具</strong></span>
+
+
+<p class="title-msg"> &nbsp 请在这里输入你想连接的数据库地址：
+	<input class="form-control"  placeholder="示例：jdbc:mysql://127.0.0.1/test?user=root&password=root" id="dataBaseUrl">
+</p>
+
+<div style="padding-left:20px;">
+<button class="btn btn-primary btn-sm" id="getTableInfoButton"><span class="glyphicon glyphicon-circle-arrow-down"></span> 连接数据库并获取所有表数据</button>
+</div>
+
+<div>
+
+<div class="table table-hover" style="margin:5px 20px auto 20px;" id="tableDiv">
+<table class="table">
+<thead>
+<tr>
+<th >表名称</th>
+<th >表描述</th>
+<th >操作</th>
+</tr>
+</thead>
+<tbody id="tablesBody">
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+<hr style="margin:20px 5px auto 20px;">
+<p style=" margin:10px auto auto 20px; color: #a2a2a2;">共<strong id="count">0</strong>项</p>
+
+</div>
+</div>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 表结构查看模态框（Modal） -->
+<div class="modal fade" id="viewTableInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看表结构详细信息</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				
+				<div role="info" >
+				<p style="color: #32CD32">表结构信息</p>
+				<hr style="margin-top: -7px;">
+
+				<div class="input-group input-group-sm" >
+				<span class="input-group-addon">表名称</span>
+				<input type="text" class="form-control" placeholder="第一个任务模块" disabled="true" id="tableInfoName">
+				</div>
+
+				<div class="input-group input-group-sm"  style="margin-top: 5px;">
+				<span class="input-group-addon">表描述</span>
+				<input type="text" class="form-control" placeholder="任务模块描述" disabled="true" id="tableInfoDesc">
+				</div>
+
+				
+				</div>
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+				<p style="color:  #32CD32">表字段详细信息</p>	
+                <hr style="margin-top: -7px;">
+
+				<div style="float:left">
+					
+					<!--表字段结构-->
+				<table class="table table-bordered">
+			
+				<thead>
+					<tr>
+					<th>字段名称</th>
+					<th>类型</th>
+					<th>描述</th>
+					</tr>
+				</thead>
+				<tbody id="tableInfoBody">
+					
+					
+				</tbody>
+				</table>
+								
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 表模板代码生成模态框（Modal） -->
+<div class="modal fade" id="viewTableModelCodeInfo" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">生成表Model模板代码</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+			
+
+				<div role="projectTaskInfo" style="margin-top: 20px;"> 
+			
+
+				<div style="float:left">
+					
+				<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">模板代码</h3>
+				</div>
+				<div class="panel-body" id="modelCodeDiv">
+				
+                <textarea style="width:550px;height: 250px;" disabled="true" id="modelCodeTextArea">
+                </textarea>
+					
+				</div>
+			   </div>
+								
+				</div>	
+				</div>
+
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>一站式项目托管平台</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/custom-style.css">
+	<link rel="stylesheet" href="./css/discuss.css">
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/static_value.js"></script>
+	<script src="../user/js/user.js" charset="utf-8"></script>
+	<script src="./js/discuss.js" charset="utf-8"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+<!--固定导航菜单-->
+<div class="navbar navbar-default navbar-fixed-top" >
+
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand"><p class="text-primary ">项目托管平台</p></a>
+  　</div>
+    <ul class="nav navbar-nav">
+       <li ><a href="../user/index.html">首页</a></li>
+       <li class="dropdown ">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">项目构建<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="init.html">项目规模评估</a></li>
+        	<li><a href="team.html">团队构建</a></li>
+        	<li ><a href="task.html">任务清单</a></li>
+          </ul>
+      </li>
+       <li><a href="team-manage.html">团队管理</a></li>
+      <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle ">进度监控<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="../project/task-normal.html">正在进行的任务</a></li>
+        	<li><a href="../project/task-finish.html">已完成的任务</a></li>
+        	<li ><a href="../project/task-failed.html">逾期的任务</a></li>
+          </ul>
+      </li>
+       <li class="dropdown"><a href="##" data-toggle="dropdown" class="dropdown-toggle ">模板代码<span class="caret"></span>
+	  <ul class="dropdown-menu"></a>
+	  <li><a href="../code/js-code.html">JavaScript V8引擎模拟</a></li>
+	  <li><a href="../code/dataBase-code.html">数据库相关模板代码工具</a></li>
+	  </ul>
+	  </li>
+	  <li><a href="##">BUG跟踪</a></li>
+	  <li><a href="##">交流论坛</a></li>
+	 </ul>
+	 
+     <ul class="nav navbar-nav navbar-right" id="userLoginUl">
+		
+	 </ul>
+
+</div>
+
+
+<div class="project-body">
+<div class="left-div">
+<h2><strong>交流论坛</strong></h2>
+<hr class="line">
+<dl>
+<dd><a href="../project/init.html#" class="menu-list "><span class="glyphicon glyphicon-time">&nbsp;项目规模评估</span></a></dd>
+<dd><a href="../project/team.html#" class="menu-list"><span class="glyphicon glyphicon-lock">&nbsp;团队构建</span></a></dd>
+<dd><a href="../project/task.html" class="menu-list"><span class=" glyphicon glyphicon-book">&nbsp;任务清单</span></a></dd>
+</dl>
+
+</div>
+<div class="right-div">
+<input type="text" hidden="true" value="1" id="taskNormalStatus">
+<span class="title text-warning"><strong>技术交流空间</strong></span>
+
+
+<p class="title-msg">这里是大家技术交流的空间，在这里请畅所欲言！</p>
+
+<div style="padding-left:20px;">
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#publishModal" ><span class="glyphicon glyphicon-plus"></span> 发帖</button>
+</div>
+
+
+
+<div style="padding-left:20px;padding-right:20px;margin-top:10px;" id="discussBodyDiv">
+
+<div class="panel panel-success" >
+    <div class="panel-heading" style="position:relative;">
+        <h3 class="panel-title">主题标题 <span style="position: absolute;right:30px; font-size:5px; top:14px; padding-right:80px; color: #32CD32">发布时间:2017-05-14 14:14 &nbsp;&nbsp;发布人:admin   </span>
+		<a href="#" style="position: absolute;right:40px; font-size:15px; top:14px;" data-toggle="modal" data-target="#replyModal" >回复此贴</a><a href="#" style="position: absolute;right:10px;top:13px;"><span class="glyphicon glyphicon-chevron-down discussDetailA" value="1" index="0"></span></a></h3>
+    </div>
+    <div class="panel-body" hidden="true" id="discussDetailContentDiv1">
+		<p style="color: #32CD32">主题内容</p>
+		<hr style="margin-top: -7px;">
+		<div id="discussContentDiv">
+			这是主要的内容
+		</div>
+
+		<div id="discussReplyDiv" style="margin-top:20px;">
+		<p style="color: #32CD32">回复评论</p>
+		<hr style="margin-top: -7px;">
+		
+		<dl id="replyItem">
+		<dt class="comment_head" floor="7">1楼
+	    <span class="user">
+		 <a class="username" target="_blank">将军百战</a> 
+		 <span class="ptime">2017-04-06 16:53发表</span> 
+		</span>
+		
+		</dt>
+		<dd class="comment_body">沙发</dd>
+		</dl>
+
+		</div>
+    </div>
+</div>
+
+
+
+
+</div>
+
+<hr style="margin:20px 5px auto 20px;">
+<p style=" margin:10px auto auto 20px; color: #a2a2a2;">共<strong id="count">0</strong>项</p>
+
+</div>
+</div>
+
+
+<!--登陆模态框-->
+<div class="modal" id="login-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center ">用户登陆</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">账号:</label><input class="form-control" type="text" placeholder="请输入用户账号" id="loginUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入用户密码" id="loginUserPassword">
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"   data-dismiss="modal" id="loginButton">登陆</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!--注册模态框-->
+<div class="modal" id="register-modal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 class="modal-title text-primary text-center">注册用户</h4>
+</div>
+<div class="modal-body">
+<form >
+<div class="form-group">
+<label class="text-primary">手机号:</label><input class="form-control" type="text" placeholder="请输入要注册的用户手机号" id="registerUserName">
+</div>
+<div class="form-group">
+<label class="text-primary">密码:</label><input class="form-control" type="password" placeholder="请输入要注册的用户密码" id="registerUserPassword">
+</div>
+<div class="form-group" id="checkPasswordDiv">
+<label class="text-primary">重复密码:</label><input class="form-control" type="password" placeholder="请再次输入用户密码" id="registerCheckUserPassword">
+</div>
+
+
+
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<button type="button" class="btn btn-primary"  data-dismiss="modal" id="registerButton">注册</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--页脚-->
+
+<div class=" project-foot-div" >
+<hr>
+<div class="text-center">Copyright © 2017, 项目托管平台, All Rights Reserved</div>
+</div>
+
+
+
+
+<!-- 发布帖子模态框（Modal） -->
+<div class="modal fade" id="publishModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">发表评论</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+				<div class="form-group">
+				<label class="text-primary">帖子主题:</label><input class="form-control" type="text" placeholder="请输入帖子主题" id="postTitle">
+				</div>
+			<div class="form-group">
+				<label class="text-primary">帖子内容:</label>
+			<textarea class="form-control" rows="10"  id="postContent"></textarea>
+		    </div>
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal" id="publishPostButton">发布帖子</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 帖子回复模态框（Modal） -->
+<div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">发表评论</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden">
+			<div class="form-group">
+			<label for="name">回复帖子主题:<span style="color: red" id="replyTitle">主题帖子</span></label>
+			<textarea class="form-control" rows="10" id="replyContent"></textarea>
+		    </div>
+			</div>
+            <div class="modal-footer" style="margin-top:20px;  ">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal" id="publishNoteButton">发表评论</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>
