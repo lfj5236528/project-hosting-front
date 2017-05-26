@@ -752,6 +752,7 @@ obj.name =$("#createChildTaskName").val();
 obj.descMessage =$("#createChildTaskDesc").val();
 obj.endedDate =$("#createChildTaskEndDate").val();
 obj.parentId=$("#updateProjectTaskModelId").val();
+obj.projectId=$("#projectSelect").val();
  
  var arr=$("#createChildTaskHadAddUserDiv").children("a");
  var array=[];

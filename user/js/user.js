@@ -199,7 +199,8 @@ $.ajax({
            withCredentials: true
        },
      data:{
-        "name":name
+        "name":name,
+		"descMessage":name
      },  
     crossDomain: true,
     success:function(obj){

@@ -126,7 +126,6 @@ function updateTeamGroup(groupId){
  obj.name=$("#updateProjectTeamName").val();
  obj.descMessage=$("#updateProjectTeamDesc").val();
  obj.leaderId=$("#updateProjectTeamLeaderId").val();
- obj.createdAt=$("#updateProjectTeamDate").val().substring(0,$("#updateProjectTeamDate").val().length);
  obj.parentId=$("#updateProjectTeamOfProjectId").val();
  var arr=$("#updateProjectTeamUserDiv").children("a");
  var array=[];
